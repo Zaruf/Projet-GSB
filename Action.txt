@@ -1,0 +1,6 @@
+Insert into Action('il fait beau')
+Insert into Action('il fait nuit')
+Insert into Action('il fait rouge')
+Insert into Action('il est bleu')
+Insert into Action('Travail sur un chantié')
+Insert into Action('Occupé')
