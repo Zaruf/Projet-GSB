@@ -1,0 +1,9 @@
+Insert into association values(5,1,'GTA','lutte contre lexclusion')
+Insert into association values(50,2,'Globarius','défense des droits de lenfant')
+Insert into association values(10,3,'Galab','lutte contre lexclusion')
+Insert into association values(2,4,'Astrop','amélioration de laccès
+aux soins')
+Insert into association values(45,5,'Ibrid','Attaque de laube')
+Insert into association values(30,6,'Reve','amélioration de l’accès
+aux soins')
+Insert into association values(60,7,'Lama','lutte contre lexclusion')
