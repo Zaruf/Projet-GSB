@@ -1,4 +1,4 @@
-use MLR2
+use ProjetGSB
 go
 
 
@@ -9,11 +9,11 @@ go
 
 create table ASSOCIATION
   (
-     ASSOCIATION_ID smallint  NOT NULL AUTO_INCREMENT,
+     ASSOCIATION_ID smallint  not null  IDENTITY (1, 1),
      PAYS_ID smallint  not null  ,
      ID tinyint  not null  ,
      NOM varchar(20)  null  ,
-     MISSION varchar(25)  null  
+     MISSION varchar(40)  null  
      ,
      constraint PK_ASSOCIATION primary key (ASSOCIATION_ID)
   ) 
@@ -31,14 +31,13 @@ go
 
 create table PERSONNE
   (
-     ID tinyint  NOT NULL AUTO_INCREMENT,
+     ID tinyint  not null  IDENTITY (1, 1) ,
      NOM varchar(20)  null  ,
      PRENOM char(32)  null  ,
      ADRESSE char(50)  null  ,
      CODEPOSTAL smallint  null  ,
      TEL smallint  null  ,
-     VILLE char(32)  null  ,
-     MAIL varchar(30)  null  
+     VILLE char(32)  null  
      ,
      constraint PK_PERSONNE primary key (ID)
   ) 
@@ -52,7 +51,7 @@ go
 
 create table CONTROLE
   (
-     CONTROLE_ID smallint  NOT NULL AUTO_INCREMENT,
+     CONTROLE_ID smallint  not null   IDENTITY (1, 1),
      DATE char(32)  null  ,
      RESULTAT char(32)  null  ,
      BUDGETPREVISIONNELLE char(32)  null  ,
@@ -70,7 +69,7 @@ go
 
 create table PAYS
   (
-     PAYS_ID smallint  NOT NULL AUTO_INCREMENT,
+     PAYS_ID smallint  not null  IDENTITY (1, 1) ,
      NOM varchar(20)  null  
      ,
      constraint PK_PAYS primary key (PAYS_ID)
@@ -85,14 +84,13 @@ go
 
 create table EMPLOYECOMMUNICATION
   (
-     ID tinyint  NOT NULL AUTO_INCREMENT,
+     ID tinyint  not null   IDENTITY (1, 1),
      NOM varchar(20)  null  ,
      PRENOM char(32)  null  ,
      ADRESSE char(50)  null  ,
      CODEPOSTAL smallint  null  ,
      TEL smallint  null  ,
-     VILLE char(32)  null  ,
-     MAIL varchar(30)  null  
+     VILLE char(32)  null  
      ,
      constraint PK_EMPLOYECOMMUNICATION primary key (ID)
   ) 
@@ -106,7 +104,7 @@ go
 
 create table ACTION
   (
-     ACTION_ID smallint NOT NULL AUTO_INCREMENT,
+     ACTION_ID smallint  not null   IDENTITY (1, 1),
      DESCRIPTIF varchar(128)  null  
      ,
      constraint PK_ACTION primary key (ACTION_ID)
@@ -121,10 +119,10 @@ go
 
 create table COURANT
   (
-     COURANT_ID smallint  NOT NULL AUTO_INCREMENT,
+     COURANT_ID smallint  not null  IDENTITY (1, 1) ,
      NOM varchar(20)  null  ,
-     DESCRIPTIF varchar(128)  null
-      ,
+     DESCRIPTIF varchar(300)  null  
+     ,
      constraint PK_COURANT primary key (COURANT_ID)
   ) 
 go
@@ -137,16 +135,15 @@ go
 
 create table ARTISTE
   (
-     ID tinyint  NOT NULL AUTO_INCREMENT,
-     COURANT_ID smallint  not null  ,
+     ID tinyint  not null  ,
+     COURANT_ID smallint  not null  IDENTITY (1, 1) ,
      SITEWEB varchar(25)  null  ,
      NOM varchar(20)  null  ,
      PRENOM char(32)  null  ,
      ADRESSE char(50)  null  ,
      CODEPOSTAL smallint  null  ,
      TEL smallint  null  ,
-     VILLE char(32)  null  ,
-     MAIL varchar(30)  null  
+     VILLE char(32)  null  
      ,
      constraint PK_ARTISTE primary key (ID)
   ) 
@@ -178,7 +175,7 @@ go
 
 create table "PUBLIC"
   (
-     PUBLIC_ID smallint  NOT NULL AUTO_INCREMENT,
+     PUBLIC_ID smallint  not null   IDENTITY (1, 1),
      LIBELLE char(32)  null  
      ,
      constraint PK_PUBLIC primary key (PUBLIC_ID)
@@ -193,10 +190,10 @@ go
 
 create table ETAGE
   (
-     BATIMENT_CODE varchar(2)  not null  ,
-     ETAGE_NUM smallint  not null  
+     CODE varchar(2)  not null  ,
+     NUM smallint  not null  
      ,
-     constraint PK_ETAGE primary key (BATIMENT_CODE, ETAGE_NUM)
+     constraint PK_ETAGE primary key (CODE, NUM)
   ) 
 go
 
@@ -212,8 +209,8 @@ go
 
 create table EVENEMENT
   (
-     EVENEMENT_ID smallint  NOT NULL AUTO_INCREMENT,
-     CAMPAGNE_ID smallint  not null  ,
+     EVENEMENT_ID smallint  not null   IDENTITY (1, 1),
+     CAMAPGNE_ID smallint  not null  ,
      DATEDEBUT datetime  null  ,
      DATEFIN datetime  null  ,
      THEME varchar(30)  null  ,
@@ -235,14 +232,13 @@ go
 
 create table RESPONSABLEASSOC
   (
-     ID tinyint  NOT NULL AUTO_INCREMENT,
+     ID tinyint  not null   IDENTITY (1, 1),
      NOM varchar(20)  null  ,
      PRENOM char(32)  null  ,
      ADRESSE char(50)  null  ,
      CODEPOSTAL smallint  null  ,
      TEL smallint  null  ,
-     VILLE char(32)  null  ,
-     MAIL varchar(30)  null  
+     VILLE char(32)  null  
      ,
      constraint PK_RESPONSABLEASSOC primary key (ID)
   ) 
@@ -256,12 +252,12 @@ go
 
 create table ENTREPRISE
   (
-     ENTREPRISE_ID smallint  NOT NULL AUTO_INCREMENT,
+     ENTREPRISE_ID smallint  not null  IDENTITY (1, 1) ,
      NOM varchar(20)  null  ,
      ADRESSE varchar(30)  null  ,
      CODEPOSTAL char(5)  null  ,
-     VILLE varchar(15)  null  ,
-     MAIL varchar(25)  null  
+     VILLE varchar(20)  null  ,
+     MAIL varchar(35)  null  
      ,
      constraint PK_ENTREPRISE primary key (ENTREPRISE_ID)
   ) 
@@ -275,7 +271,7 @@ go
 
 create table CATEGORIEPRODUIT
   (
-     CATPRODUIT_ID smallint NOT NULL AUTO_INCREMENT,
+     CATPRODUIT_ID smallint  not null   IDENTITY (1, 1),
      NOM varchar(15)  null  
      ,
      constraint PK_CATEGORIEPRODUIT primary key (CATPRODUIT_ID)
@@ -290,9 +286,9 @@ go
 
 create table BATIMENT
   (
-     BATIMENT_CODE varchar(2)  not null  
+     CODE varchar(2)  not null  
      ,
-     constraint PK_BATIMENT primary key (BATIMENT_CODE)
+     constraint PK_BATIMENT primary key (CODE)
   ) 
 go
 
@@ -304,7 +300,7 @@ go
 
 create table CATEGORIE
   (
-     CATEGORIE_CODE varchar(5)  not null  ,
+     CATEGORIE_CODE varchar(5)  not null,
      NOM varchar(25)  null  
      ,
      constraint PK_CATEGORIE primary key (CATEGORIE_CODE)
@@ -319,15 +315,14 @@ go
 
 create table VIP
   (
-     ID tinyint  NOT NULL AUTO_INCREMENT,
-     CATEGORIE_CODE varchar(5)  not null  ,
+     ID tinyint  not null  IDENTITY (1, 1) ,
+     CATEGORIE_CODE varchar(5)  not null ,
      NOM varchar(20)  null  ,
      PRENOM char(32)  null  ,
      ADRESSE char(50)  null  ,
      CODEPOSTAL smallint  null  ,
      TEL smallint  null  ,
-     VILLE char(32)  null  ,
-     MAIL varchar(30)  null  
+     VILLE char(32)  null  
      ,
      constraint PK_VIP primary key (ID)
   ) 
@@ -345,7 +340,7 @@ go
 
 create table CAMPAGNE
   (
-     CAMPAGNE_ID smallint  NOT NULL AUTO_INCREMENT,
+     CAMAPGNE_ID smallint  not null   IDENTITY (1, 1),
      PUBLIC_ID smallint  not null  ,
      ID tinyint  not null  ,
      INTITULE varchar(20)  null  ,
@@ -354,7 +349,7 @@ create table CAMPAGNE
      DATEDEBUT datetime  null  ,
      DATEFIN datetime  null  
      ,
-     constraint PK_CAMPAGNE primary key (CAMPAGNE_ID)
+     constraint PK_CAMPAGNE primary key (CAMAPGNE_ID)
   ) 
 go
 
@@ -370,14 +365,14 @@ go
 
 create table AGENCE
   (
-     AGENCE_ID smallint  NOT NULL AUTO_INCREMENT,
+     AGENCE_ID smallint  not null   IDENTITY (1, 1),
      NOM varchar(20)  null  ,
      ADRESSE varchar(25)  null  ,
      CODEPOSTAL smallint  null  ,
      VILLE varchar(25)  null  ,
      TEL varchar(10)  null  ,
-     EMAIL varchar(25)  null  ,
-     SITEWEB varchar(25)  null  ,
+     EMAIL varchar(35)  null  ,
+     SITEWEB varchar(35)  null  ,
      TYPE varchar(25)  null  
      ,
      constraint PK_AGENCE primary key (AGENCE_ID)
@@ -392,12 +387,12 @@ go
 
 create table PARTENARIAT
   (
-     PARTENARIAT_ID smallint  NOT NULL AUTO_INCREMENT,
+     PARTENARIAT_ID smallint  not null  IDENTITY (1, 1) ,
      ASSOCIATION_ID smallint  not null  ,
      ACTION_ID smallint  not null  ,
      DATE datetime  null  ,
-     BUDGETPREVISIONNEL smallint  null  ,
-     BUDGETREEL char(32)  null  
+     BUDGETREEL smallint  null  ,
+     BUDGEPREVISIONNEL smallint  null  
      ,
      constraint PK_PARTENARIAT primary key (PARTENARIAT_ID)
   ) 
@@ -415,7 +410,7 @@ go
 
 create table TYPEDECONTROLE
   (
-     TYPECONTROLE_ID smallint  NOT NULL AUTO_INCREMENT,
+     TYPECONTROLE_ID smallint  not null   IDENTITY (1, 1),
      NOM varchar(20)  null  
      ,
      constraint PK_TYPEDECONTROLE primary key (TYPECONTROLE_ID)
@@ -430,16 +425,16 @@ go
 
 create table ZONESTOCKAGE
   (
-     BATIMENT_CODE varchar(2)  not null  ,
-     ETAGE_NUM smallint  not null  ,
-     ZONESTOCKAGE_ID smallint  not null  ,
+     CODE varchar(2)  not null  ,
+     NUM smallint  not null  ,
+     ZONESTOCK_ID smallint  not null  ,
      CATPRODUIT_ID smallint  not null  ,
      NOM varchar(20)  null  ,
-     ADRESSE varchar(25)  null  ,
+     ADRESSE varchar(30)  null  ,
      CODEPOSTALE smallint  null  ,
      VILLE varchar(20)  null  
      ,
-     constraint PK_ZONESTOCKAGE primary key (BATIMENT_CODE, ETAGE_NUM, ZONESTOCKAGE_ID)
+     constraint PK_ZONESTOCKAGE primary key (CODE, NUM, ZONESTOCK_ID)
   ) 
 go
 
@@ -475,12 +470,12 @@ go
 
 create table CONTROLER
   (
-     BATIMENT_CODE varchar(2)  not null  ,
-     ETAGE_NUM smallint  not null  ,
-     ZONESTOCKAGE_ID smallint  not null  ,
+     CODE varchar(2)  not null  ,
+     NUM smallint  not null  ,
+     ZONESTOCK_ID smallint  not null  ,
      CONTROLE_ID smallint  not null  
      ,
-     constraint PK_CONTROLER primary key (BATIMENT_CODE, ETAGE_NUM, ZONESTOCKAGE_ID, CONTROLE_ID)
+     constraint PK_CONTROLER primary key (CODE, NUM, ZONESTOCK_ID, CONTROLE_ID)
   ) 
 go
 
@@ -538,7 +533,7 @@ create table CONTENIR
      CATEGORIE_CODE varchar(5)  not null  ,
      EVENEMENT_ID smallint  not null  ,
      DATE char(32)  null  ,
-     MESSAGE varchar(128)  null  
+     MESSAGE varchar(200)  null  
      ,
      constraint PK_CONTENIR primary key (CATEGORIE_CODE, EVENEMENT_ID)
   ) 
@@ -557,8 +552,7 @@ go
 create table EST_DE_TYPE
   (
      CONTROLE_ID smallint  not null  ,
-     TYPECONTROLE_ID smallint  not null  ,
-     COMMENTAIRE char(32)  null  
+     TYPECONTROLE_ID smallint  not null  
      ,
      constraint PK_EST_DE_TYPE primary key (CONTROLE_ID, TYPECONTROLE_ID)
   ) 
@@ -577,15 +571,37 @@ go
 create table ETRE_EN_RELATION
   (
      AGENCE_ID smallint  not null  ,
-     CAMPAGNE_ID smallint  not null  
+     CAMAPGNE_ID smallint  not null  
      ,
-     constraint PK_ETRE_EN_RELATION primary key (AGENCE_ID, CAMPAGNE_ID)
+     constraint PK_ETRE_EN_RELATION primary key (AGENCE_ID, CAMAPGNE_ID)
   ) 
 go
 
 
 
 /*      INDEX DE ETRE_EN_RELATION      */
+
+
+
+/* -----------------------------------------------------------------------------
+      TABLE : A_BESOIN
+----------------------------------------------------------------------------- */
+
+create table A_BESOIN
+  (
+     CODE varchar(2)  not null  ,
+     NUM smallint  not null  ,
+     ZONESTOCK_ID smallint  not null  ,
+     TYPECONTROLE_ID smallint  not null  ,
+     TEXTE varchar(128)  null  
+     ,
+     constraint PK_A_BESOIN primary key (CODE, NUM, ZONESTOCK_ID, TYPECONTROLE_ID)
+  ) 
+go
+
+
+
+/*      INDEX DE A_BESOIN      */
 
 
 
@@ -674,16 +690,16 @@ go
 
 
 alter table ETAGE 
-     add constraint FK_ETAGE_BATIMENT foreign key (BATIMENT_CODE) 
-               references BATIMENT (BATIMENT_CODE)
+     add constraint FK_ETAGE_BATIMENT foreign key (CODE) 
+               references BATIMENT (CODE)
 go
 
 
 
 
 alter table EVENEMENT 
-     add constraint FK_EVENEMENT_CAMPAGNE foreign key (CAMPAGNE_ID) 
-               references CAMPAGNE (CAMPAGNE_ID)
+     add constraint FK_EVENEMENT_CAMPAGNE foreign key (CAMAPGNE_ID) 
+               references CAMPAGNE (CAMAPGNE_ID)
 go
 
 
@@ -746,8 +762,8 @@ go
 
 
 alter table ZONESTOCKAGE 
-     add constraint FK_ZONESTOCKAGE_ETAGE foreign key (BATIMENT_CODE, ETAGE_NUM) 
-               references ETAGE (BATIMENT_CODE, ETAGE_NUM)
+     add constraint FK_ZONESTOCKAGE_ETAGE foreign key (CODE, NUM) 
+               references ETAGE (CODE, NUM)
 go
 
 
@@ -778,8 +794,8 @@ go
 
 
 alter table CONTROLER 
-     add constraint FK_CONTROLER_ZONESTOCKAGE foreign key (BATIMENT_CODE, ETAGE_NUM, ZONESTOCKAGE_ID) 
-               references ZONESTOCKAGE (BATIMENT_CODE, ETAGE_NUM, ZONESTOCKAGE_ID)
+     add constraint FK_CONTROLER_ZONESTOCKAGE foreign key (CODE, NUM, ZONESTOCK_ID) 
+               references ZONESTOCKAGE (CODE, NUM, ZONESTOCK_ID)
 go
 
 
@@ -874,8 +890,24 @@ go
 
 
 alter table ETRE_EN_RELATION 
-     add constraint FK_ETRE_EN_RELATION_CAMPAGNE foreign key (CAMPAGNE_ID) 
-               references CAMPAGNE (CAMPAGNE_ID)
+     add constraint FK_ETRE_EN_RELATION_CAMPAGNE foreign key (CAMAPGNE_ID) 
+               references CAMPAGNE (CAMAPGNE_ID)
+go
+
+
+
+
+alter table A_BESOIN 
+     add constraint FK_A_BESOIN_ZONESTOCKAGE foreign key (CODE, NUM, ZONESTOCK_ID) 
+               references ZONESTOCKAGE (CODE, NUM, ZONESTOCK_ID)
+go
+
+
+
+
+alter table A_BESOIN 
+     add constraint FK_A_BESOIN_TYPEDECONTROLE foreign key (TYPECONTROLE_ID) 
+               references TYPEDECONTROLE (TYPECONTROLE_ID)
 go
 
 
