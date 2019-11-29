@@ -1,0 +1,920 @@
+use MLR2
+go
+
+
+
+/* -----------------------------------------------------------------------------
+      TABLE : ASSOCIATION
+----------------------------------------------------------------------------- */
+
+create table ASSOCIATION
+  (
+     ASSOCIATION_ID smallint  NOT NULL AUTO_INCREMENT,
+     PAYS_ID smallint  not null  ,
+     ID tinyint  not null  ,
+     NOM varchar(20)  null  ,
+     MISSION varchar(25)  null  
+     ,
+     constraint PK_ASSOCIATION primary key (ASSOCIATION_ID)
+  ) 
+go
+
+
+
+/*      INDEX DE ASSOCIATION      */
+
+
+
+/* -----------------------------------------------------------------------------
+      TABLE : PERSONNE
+----------------------------------------------------------------------------- */
+
+create table PERSONNE
+  (
+     ID tinyint  NOT NULL AUTO_INCREMENT,
+     NOM varchar(20)  null  ,
+     PRENOM char(32)  null  ,
+     ADRESSE char(50)  null  ,
+     CODEPOSTAL smallint  null  ,
+     TEL smallint  null  ,
+     VILLE char(32)  null  ,
+     MAIL varchar(30)  null  
+     ,
+     constraint PK_PERSONNE primary key (ID)
+  ) 
+go
+
+
+
+/* -----------------------------------------------------------------------------
+      TABLE : CONTROLE
+----------------------------------------------------------------------------- */
+
+create table CONTROLE
+  (
+     CONTROLE_ID smallint  NOT NULL AUTO_INCREMENT,
+     DATE char(32)  null  ,
+     RESULTAT char(32)  null  ,
+     BUDGETPREVISIONNELLE char(32)  null  ,
+     BUDGETREEL char(32)  null  
+     ,
+     constraint PK_CONTROLE primary key (CONTROLE_ID)
+  ) 
+go
+
+
+
+/* -----------------------------------------------------------------------------
+      TABLE : PAYS
+----------------------------------------------------------------------------- */
+
+create table PAYS
+  (
+     PAYS_ID smallint  NOT NULL AUTO_INCREMENT,
+     NOM varchar(20)  null  
+     ,
+     constraint PK_PAYS primary key (PAYS_ID)
+  ) 
+go
+
+
+
+/* -----------------------------------------------------------------------------
+      TABLE : EMPLOYECOMMUNICATION
+----------------------------------------------------------------------------- */
+
+create table EMPLOYECOMMUNICATION
+  (
+     ID tinyint  NOT NULL AUTO_INCREMENT,
+     NOM varchar(20)  null  ,
+     PRENOM char(32)  null  ,
+     ADRESSE char(50)  null  ,
+     CODEPOSTAL smallint  null  ,
+     TEL smallint  null  ,
+     VILLE char(32)  null  ,
+     MAIL varchar(30)  null  
+     ,
+     constraint PK_EMPLOYECOMMUNICATION primary key (ID)
+  ) 
+go
+
+
+
+/* -----------------------------------------------------------------------------
+      TABLE : ACTION
+----------------------------------------------------------------------------- */
+
+create table ACTION
+  (
+     ACTION_ID smallint NOT NULL AUTO_INCREMENT,
+     DESCRIPTIF varchar(128)  null  
+     ,
+     constraint PK_ACTION primary key (ACTION_ID)
+  ) 
+go
+
+
+
+/* -----------------------------------------------------------------------------
+      TABLE : COURANT
+----------------------------------------------------------------------------- */
+
+create table COURANT
+  (
+     COURANT_ID smallint  NOT NULL AUTO_INCREMENT,
+     NOM varchar(20)  null  ,
+     DESCRIPTIF varchar(128)  null
+      ,
+     constraint PK_COURANT primary key (COURANT_ID)
+  ) 
+go
+
+
+
+/* -----------------------------------------------------------------------------
+      TABLE : ARTISTE
+----------------------------------------------------------------------------- */
+
+create table ARTISTE
+  (
+     ID tinyint  NOT NULL AUTO_INCREMENT,
+     COURANT_ID smallint  not null  ,
+     SITEWEB varchar(25)  null  ,
+     NOM varchar(20)  null  ,
+     PRENOM char(32)  null  ,
+     ADRESSE char(50)  null  ,
+     CODEPOSTAL smallint  null  ,
+     TEL smallint  null  ,
+     VILLE char(32)  null  ,
+     MAIL varchar(30)  null  
+     ,
+     constraint PK_ARTISTE primary key (ID)
+  ) 
+go
+
+
+
+/*      INDEX DE ARTISTE      */
+
+
+
+/* -----------------------------------------------------------------------------
+      TABLE : DATE
+----------------------------------------------------------------------------- */
+
+create table DATE
+  (
+     ANNEE datetime  not null  
+     ,
+     constraint PK_DATE primary key (ANNEE)
+  ) 
+go
+
+
+
+/* -----------------------------------------------------------------------------
+      TABLE : PUBLIC
+----------------------------------------------------------------------------- */
+
+create table "PUBLIC"
+  (
+     PUBLIC_ID smallint  NOT NULL AUTO_INCREMENT,
+     LIBELLE char(32)  null  
+     ,
+     constraint PK_PUBLIC primary key (PUBLIC_ID)
+  ) 
+go
+
+
+
+/* -----------------------------------------------------------------------------
+      TABLE : ETAGE
+----------------------------------------------------------------------------- */
+
+create table ETAGE
+  (
+     BATIMENT_CODE varchar(2)  not null  ,
+     ETAGE_NUM smallint  not null  
+     ,
+     constraint PK_ETAGE primary key (BATIMENT_CODE, ETAGE_NUM)
+  ) 
+go
+
+
+
+/*      INDEX DE ETAGE      */
+
+
+
+/* -----------------------------------------------------------------------------
+      TABLE : EVENEMENT
+----------------------------------------------------------------------------- */
+
+create table EVENEMENT
+  (
+     EVENEMENT_ID smallint  NOT NULL AUTO_INCREMENT,
+     CAMPAGNE_ID smallint  not null  ,
+     DATEDEBUT datetime  null  ,
+     DATEFIN datetime  null  ,
+     THEME varchar(30)  null  ,
+     VILLE char(32)  null  
+     ,
+     constraint PK_EVENEMENT primary key (EVENEMENT_ID)
+  ) 
+go
+
+
+
+/*      INDEX DE EVENEMENT      */
+
+
+
+/* -----------------------------------------------------------------------------
+      TABLE : RESPONSABLEASSOC
+----------------------------------------------------------------------------- */
+
+create table RESPONSABLEASSOC
+  (
+     ID tinyint  NOT NULL AUTO_INCREMENT,
+     NOM varchar(20)  null  ,
+     PRENOM char(32)  null  ,
+     ADRESSE char(50)  null  ,
+     CODEPOSTAL smallint  null  ,
+     TEL smallint  null  ,
+     VILLE char(32)  null  ,
+     MAIL varchar(30)  null  
+     ,
+     constraint PK_RESPONSABLEASSOC primary key (ID)
+  ) 
+go
+
+
+
+/* -----------------------------------------------------------------------------
+      TABLE : ENTREPRISE
+----------------------------------------------------------------------------- */
+
+create table ENTREPRISE
+  (
+     ENTREPRISE_ID smallint  NOT NULL AUTO_INCREMENT,
+     NOM varchar(20)  null  ,
+     ADRESSE varchar(30)  null  ,
+     CODEPOSTAL char(5)  null  ,
+     VILLE varchar(15)  null  ,
+     MAIL varchar(25)  null  
+     ,
+     constraint PK_ENTREPRISE primary key (ENTREPRISE_ID)
+  ) 
+go
+
+
+
+/* -----------------------------------------------------------------------------
+      TABLE : CATEGORIEPRODUIT
+----------------------------------------------------------------------------- */
+
+create table CATEGORIEPRODUIT
+  (
+     CATPRODUIT_ID smallint NOT NULL AUTO_INCREMENT,
+     NOM varchar(15)  null  
+     ,
+     constraint PK_CATEGORIEPRODUIT primary key (CATPRODUIT_ID)
+  ) 
+go
+
+
+
+/* -----------------------------------------------------------------------------
+      TABLE : BATIMENT
+----------------------------------------------------------------------------- */
+
+create table BATIMENT
+  (
+     BATIMENT_CODE varchar(2)  not null  
+     ,
+     constraint PK_BATIMENT primary key (BATIMENT_CODE)
+  ) 
+go
+
+
+
+/* -----------------------------------------------------------------------------
+      TABLE : CATEGORIE
+----------------------------------------------------------------------------- */
+
+create table CATEGORIE
+  (
+     CATEGORIE_CODE varchar(5)  not null  ,
+     NOM varchar(25)  null  
+     ,
+     constraint PK_CATEGORIE primary key (CATEGORIE_CODE)
+  ) 
+go
+
+
+
+/* -----------------------------------------------------------------------------
+      TABLE : VIP
+----------------------------------------------------------------------------- */
+
+create table VIP
+  (
+     ID tinyint  NOT NULL AUTO_INCREMENT,
+     CATEGORIE_CODE varchar(5)  not null  ,
+     NOM varchar(20)  null  ,
+     PRENOM char(32)  null  ,
+     ADRESSE char(50)  null  ,
+     CODEPOSTAL smallint  null  ,
+     TEL smallint  null  ,
+     VILLE char(32)  null  ,
+     MAIL varchar(30)  null  
+     ,
+     constraint PK_VIP primary key (ID)
+  ) 
+go
+
+
+
+/*      INDEX DE VIP      */
+
+
+
+/* -----------------------------------------------------------------------------
+      TABLE : CAMPAGNE
+----------------------------------------------------------------------------- */
+
+create table CAMPAGNE
+  (
+     CAMPAGNE_ID smallint  NOT NULL AUTO_INCREMENT,
+     PUBLIC_ID smallint  not null  ,
+     ID tinyint  not null  ,
+     INTITULE varchar(20)  null  ,
+     OBJECTIF varchar(50)  null  ,
+     PUBLICTOUCHE varchar(50)  null  ,
+     DATEDEBUT datetime  null  ,
+     DATEFIN datetime  null  
+     ,
+     constraint PK_CAMPAGNE primary key (CAMPAGNE_ID)
+  ) 
+go
+
+
+
+/*      INDEX DE CAMPAGNE      */
+
+
+
+/* -----------------------------------------------------------------------------
+      TABLE : AGENCE
+----------------------------------------------------------------------------- */
+
+create table AGENCE
+  (
+     AGENCE_ID smallint  NOT NULL AUTO_INCREMENT,
+     NOM varchar(20)  null  ,
+     ADRESSE varchar(25)  null  ,
+     CODEPOSTAL smallint  null  ,
+     VILLE varchar(25)  null  ,
+     TEL varchar(10)  null  ,
+     EMAIL varchar(25)  null  ,
+     SITEWEB varchar(25)  null  ,
+     TYPE varchar(25)  null  
+     ,
+     constraint PK_AGENCE primary key (AGENCE_ID)
+  ) 
+go
+
+
+
+/* -----------------------------------------------------------------------------
+      TABLE : PARTENARIAT
+----------------------------------------------------------------------------- */
+
+create table PARTENARIAT
+  (
+     PARTENARIAT_ID smallint  NOT NULL AUTO_INCREMENT,
+     ASSOCIATION_ID smallint  not null  ,
+     ACTION_ID smallint  not null  ,
+     DATE datetime  null  ,
+     BUDGETPREVISIONNEL smallint  null  ,
+     BUDGETREEL char(32)  null  
+     ,
+     constraint PK_PARTENARIAT primary key (PARTENARIAT_ID)
+  ) 
+go
+
+
+
+/*      INDEX DE PARTENARIAT      */
+
+
+
+/* -----------------------------------------------------------------------------
+      TABLE : TYPEDECONTROLE
+----------------------------------------------------------------------------- */
+
+create table TYPEDECONTROLE
+  (
+     TYPECONTROLE_ID smallint  NOT NULL AUTO_INCREMENT,
+     NOM varchar(20)  null  
+     ,
+     constraint PK_TYPEDECONTROLE primary key (TYPECONTROLE_ID)
+  ) 
+go
+
+
+
+/* -----------------------------------------------------------------------------
+      TABLE : ZONESTOCKAGE
+----------------------------------------------------------------------------- */
+
+create table ZONESTOCKAGE
+  (
+     BATIMENT_CODE varchar(2)  not null  ,
+     ETAGE_NUM smallint  not null  ,
+     ZONESTOCKAGE_ID smallint  not null  ,
+     CATPRODUIT_ID smallint  not null  ,
+     NOM varchar(20)  null  ,
+     ADRESSE varchar(25)  null  ,
+     CODEPOSTALE smallint  null  ,
+     VILLE varchar(20)  null  
+     ,
+     constraint PK_ZONESTOCKAGE primary key (BATIMENT_CODE, ETAGE_NUM, ZONESTOCKAGE_ID)
+  ) 
+go
+
+
+
+/*      INDEX DE ZONESTOCKAGE      */
+
+
+
+/* -----------------------------------------------------------------------------
+      TABLE : PARTICIPER
+----------------------------------------------------------------------------- */
+
+create table PARTICIPER
+  (
+     EVENEMENT_ID smallint  not null  ,
+     ID tinyint  not null  ,
+     CACHET char(32)  null  
+     ,
+     constraint PK_PARTICIPER primary key (EVENEMENT_ID, ID)
+  ) 
+go
+
+
+
+/*      INDEX DE PARTICIPER      */
+
+
+
+/* -----------------------------------------------------------------------------
+      TABLE : CONTROLER
+----------------------------------------------------------------------------- */
+
+create table CONTROLER
+  (
+     BATIMENT_CODE varchar(2)  not null  ,
+     ETAGE_NUM smallint  not null  ,
+     ZONESTOCKAGE_ID smallint  not null  ,
+     CONTROLE_ID smallint  not null  
+     ,
+     constraint PK_CONTROLER primary key (BATIMENT_CODE, ETAGE_NUM, ZONESTOCKAGE_ID, CONTROLE_ID)
+  ) 
+go
+
+
+
+/*      INDEX DE CONTROLER      */
+
+
+
+/* -----------------------------------------------------------------------------
+      TABLE : GERER
+----------------------------------------------------------------------------- */
+
+create table GERER
+  (
+     CONTROLE_ID smallint  not null  ,
+     ENTREPRISE_ID smallint  not null  
+     ,
+     constraint PK_GERER primary key (CONTROLE_ID, ENTREPRISE_ID)
+  ) 
+go
+
+
+
+/*      INDEX DE GERER      */
+
+
+
+/* -----------------------------------------------------------------------------
+      TABLE : CHOISIR
+----------------------------------------------------------------------------- */
+
+create table CHOISIR
+  (
+     PAYS_ID smallint  not null  ,
+     ANNEE datetime  not null  ,
+     ACTION_ID smallint  not null  
+     ,
+     constraint PK_CHOISIR primary key (PAYS_ID, ANNEE, ACTION_ID)
+  ) 
+go
+
+
+
+/*      INDEX DE CHOISIR      */
+
+
+
+/* -----------------------------------------------------------------------------
+      TABLE : CONTENIR
+----------------------------------------------------------------------------- */
+
+create table CONTENIR
+  (
+     CATEGORIE_CODE varchar(5)  not null  ,
+     EVENEMENT_ID smallint  not null  ,
+     DATE char(32)  null  ,
+     MESSAGE varchar(128)  null  
+     ,
+     constraint PK_CONTENIR primary key (CATEGORIE_CODE, EVENEMENT_ID)
+  ) 
+go
+
+
+
+/*      INDEX DE CONTENIR      */
+
+
+
+/* -----------------------------------------------------------------------------
+      TABLE : EST_DE_TYPE
+----------------------------------------------------------------------------- */
+
+create table EST_DE_TYPE
+  (
+     CONTROLE_ID smallint  not null  ,
+     TYPECONTROLE_ID smallint  not null  ,
+     COMMENTAIRE char(32)  null  
+     ,
+     constraint PK_EST_DE_TYPE primary key (CONTROLE_ID, TYPECONTROLE_ID)
+  ) 
+go
+
+
+
+/*      INDEX DE EST_DE_TYPE      */
+
+
+
+/* -----------------------------------------------------------------------------
+      TABLE : ETRE_EN_RELATION
+----------------------------------------------------------------------------- */
+
+create table ETRE_EN_RELATION
+  (
+     AGENCE_ID smallint  not null  ,
+     CAMPAGNE_ID smallint  not null  
+     ,
+     constraint PK_ETRE_EN_RELATION primary key (AGENCE_ID, CAMPAGNE_ID)
+  ) 
+go
+
+
+
+/*      INDEX DE ETRE_EN_RELATION      */
+
+
+
+/* -----------------------------------------------------------------------------
+      TABLE : SPÉCIALISER
+----------------------------------------------------------------------------- */
+
+create table SPÉCIALISER
+  (
+     TYPECONTROLE_ID smallint  not null  ,
+     ENTREPRISE_ID smallint  not null  
+     ,
+     constraint PK_SPÉCIALISER primary key (TYPECONTROLE_ID, ENTREPRISE_ID)
+  ) 
+go
+
+
+
+/*      INDEX DE SPÉCIALISER      */
+
+
+
+/* -----------------------------------------------------------------------------
+      TABLE : CONVIER
+----------------------------------------------------------------------------- */
+
+create table CONVIER
+  (
+     ID tinyint  not null  ,
+     EVENEMENT_ID smallint  not null  
+     ,
+     constraint PK_CONVIER primary key (ID, EVENEMENT_ID)
+  ) 
+go
+
+
+
+/*      INDEX DE CONVIER      */
+
+
+
+/* -----------------------------------------------------------------------------
+      REFERENCES SUR LES TABLES
+----------------------------------------------------------------------------- */
+
+
+
+alter table ASSOCIATION 
+     add constraint FK_ASSOCIATION_PAYS foreign key (PAYS_ID) 
+               references PAYS (PAYS_ID)
+go
+
+
+
+
+alter table ASSOCIATION 
+     add constraint FK_ASSOCIATION_RESPONSABLEASSOC foreign key (ID) 
+               references RESPONSABLEASSOC (ID)
+go
+
+
+
+
+alter table EMPLOYECOMMUNICATION 
+     add constraint FK_EMPLOYECOMMUNICATION_PERSONNE foreign key (ID) 
+               references PERSONNE (ID)
+go
+
+
+
+
+alter table ARTISTE 
+     add constraint FK_ARTISTE_COURANT foreign key (COURANT_ID) 
+               references COURANT (COURANT_ID)
+go
+
+
+
+
+alter table ARTISTE 
+     add constraint FK_ARTISTE_PERSONNE foreign key (ID) 
+               references PERSONNE (ID)
+go
+
+
+
+
+alter table ETAGE 
+     add constraint FK_ETAGE_BATIMENT foreign key (BATIMENT_CODE) 
+               references BATIMENT (BATIMENT_CODE)
+go
+
+
+
+
+alter table EVENEMENT 
+     add constraint FK_EVENEMENT_CAMPAGNE foreign key (CAMPAGNE_ID) 
+               references CAMPAGNE (CAMPAGNE_ID)
+go
+
+
+
+
+alter table RESPONSABLEASSOC 
+     add constraint FK_RESPONSABLEASSOC_PERSONNE foreign key (ID) 
+               references PERSONNE (ID)
+go
+
+
+
+
+alter table VIP 
+     add constraint FK_VIP_CATEGORIE foreign key (CATEGORIE_CODE) 
+               references CATEGORIE (CATEGORIE_CODE)
+go
+
+
+
+
+alter table VIP 
+     add constraint FK_VIP_PERSONNE foreign key (ID) 
+               references PERSONNE (ID)
+go
+
+
+
+
+alter table CAMPAGNE 
+     add constraint FK_CAMPAGNE_PUBLIC foreign key (PUBLIC_ID) 
+               references "PUBLIC" (PUBLIC_ID)
+go
+
+
+
+
+alter table CAMPAGNE 
+     add constraint FK_CAMPAGNE_EMPLOYECOMMUNICATION foreign key (ID) 
+               references EMPLOYECOMMUNICATION (ID)
+go
+
+
+
+
+alter table PARTENARIAT 
+     add constraint FK_PARTENARIAT_ASSOCIATION foreign key (ASSOCIATION_ID) 
+               references ASSOCIATION (ASSOCIATION_ID)
+go
+
+
+
+
+alter table PARTENARIAT 
+     add constraint FK_PARTENARIAT_ACTION foreign key (ACTION_ID) 
+               references ACTION (ACTION_ID)
+go
+
+
+
+
+alter table ZONESTOCKAGE 
+     add constraint FK_ZONESTOCKAGE_ETAGE foreign key (BATIMENT_CODE, ETAGE_NUM) 
+               references ETAGE (BATIMENT_CODE, ETAGE_NUM)
+go
+
+
+
+
+alter table ZONESTOCKAGE 
+     add constraint FK_ZONESTOCKAGE_CATEGORIEPRODUIT foreign key (CATPRODUIT_ID) 
+               references CATEGORIEPRODUIT (CATPRODUIT_ID)
+go
+
+
+
+
+alter table PARTICIPER 
+     add constraint FK_PARTICIPER_EVENEMENT foreign key (EVENEMENT_ID) 
+               references EVENEMENT (EVENEMENT_ID)
+go
+
+
+
+
+alter table PARTICIPER 
+     add constraint FK_PARTICIPER_ARTISTE foreign key (ID) 
+               references ARTISTE (ID)
+go
+
+
+
+
+alter table CONTROLER 
+     add constraint FK_CONTROLER_ZONESTOCKAGE foreign key (BATIMENT_CODE, ETAGE_NUM, ZONESTOCKAGE_ID) 
+               references ZONESTOCKAGE (BATIMENT_CODE, ETAGE_NUM, ZONESTOCKAGE_ID)
+go
+
+
+
+
+alter table CONTROLER 
+     add constraint FK_CONTROLER_CONTROLE foreign key (CONTROLE_ID) 
+               references CONTROLE (CONTROLE_ID)
+go
+
+
+
+
+alter table GERER 
+     add constraint FK_GERER_CONTROLE foreign key (CONTROLE_ID) 
+               references CONTROLE (CONTROLE_ID)
+go
+
+
+
+
+alter table GERER 
+     add constraint FK_GERER_ENTREPRISE foreign key (ENTREPRISE_ID) 
+               references ENTREPRISE (ENTREPRISE_ID)
+go
+
+
+
+
+alter table CHOISIR 
+     add constraint FK_CHOISIR_PAYS foreign key (PAYS_ID) 
+               references PAYS (PAYS_ID)
+go
+
+
+
+
+alter table CHOISIR 
+     add constraint FK_CHOISIR_DATE foreign key (ANNEE) 
+               references DATE (ANNEE)
+go
+
+
+
+
+alter table CHOISIR 
+     add constraint FK_CHOISIR_ACTION foreign key (ACTION_ID) 
+               references ACTION (ACTION_ID)
+go
+
+
+
+
+alter table CONTENIR 
+     add constraint FK_CONTENIR_CATEGORIE foreign key (CATEGORIE_CODE) 
+               references CATEGORIE (CATEGORIE_CODE)
+go
+
+
+
+
+alter table CONTENIR 
+     add constraint FK_CONTENIR_EVENEMENT foreign key (EVENEMENT_ID) 
+               references EVENEMENT (EVENEMENT_ID)
+go
+
+
+
+
+alter table EST_DE_TYPE 
+     add constraint FK_EST_DE_TYPE_CONTROLE foreign key (CONTROLE_ID) 
+               references CONTROLE (CONTROLE_ID)
+go
+
+
+
+
+alter table EST_DE_TYPE 
+     add constraint FK_EST_DE_TYPE_TYPEDECONTROLE foreign key (TYPECONTROLE_ID) 
+               references TYPEDECONTROLE (TYPECONTROLE_ID)
+go
+
+
+
+
+alter table ETRE_EN_RELATION 
+     add constraint FK_ETRE_EN_RELATION_AGENCE foreign key (AGENCE_ID) 
+               references AGENCE (AGENCE_ID)
+go
+
+
+
+
+alter table ETRE_EN_RELATION 
+     add constraint FK_ETRE_EN_RELATION_CAMPAGNE foreign key (CAMPAGNE_ID) 
+               references CAMPAGNE (CAMPAGNE_ID)
+go
+
+
+
+
+alter table SPÉCIALISER 
+     add constraint FK_SPÉCIALISER_TYPEDECONTROLE foreign key (TYPECONTROLE_ID) 
+               references TYPEDECONTROLE (TYPECONTROLE_ID)
+go
+
+
+
+
+alter table SPÉCIALISER 
+     add constraint FK_SPÉCIALISER_ENTREPRISE foreign key (ENTREPRISE_ID) 
+               references ENTREPRISE (ENTREPRISE_ID)
+go
+
+
+
+
+alter table CONVIER 
+     add constraint FK_CONVIER_VIP foreign key (ID) 
+               references VIP (ID)
+go
+
+
+
+
+alter table CONVIER 
+     add constraint FK_CONVIER_EVENEMENT foreign key (EVENEMENT_ID) 
+               references EVENEMENT (EVENEMENT_ID)
+go
+
+
+
+
+/*
+ -----------------------------------------------------------------------------
+               FIN DE GENERATION
+ -----------------------------------------------------------------------------
+*/
