@@ -1,0 +1,10 @@
+F:\A2\2tssl\PPE 3\GSB\GSB\bin\Debug\GSB.exe.config
+F:\A2\2tssl\PPE 3\GSB\GSB\bin\Debug\GSB.exe
+F:\A2\2tssl\PPE 3\GSB\GSB\bin\Debug\GSB.pdb
+F:\A2\2tssl\PPE 3\GSB\GSB\obj\Debug\GSB.csprojResolveAssemblyReference.cache
+F:\A2\2tssl\PPE 3\GSB\GSB\obj\Debug\GSB.FrmGSB.resources
+F:\A2\2tssl\PPE 3\GSB\GSB\obj\Debug\GSB.Properties.Resources.resources
+F:\A2\2tssl\PPE 3\GSB\GSB\obj\Debug\GSB.csproj.GenerateResource.Cache
+F:\A2\2tssl\PPE 3\GSB\GSB\obj\Debug\GSB.exe
+F:\A2\2tssl\PPE 3\GSB\GSB\obj\Debug\GSB.pdb
+F:\A2\2tssl\PPE 3\GSB\GSB\obj\Debug\GSB.AgenceView.resources
